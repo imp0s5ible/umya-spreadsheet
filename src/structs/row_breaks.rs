@@ -37,14 +37,14 @@ impl RowBreaks {
     ) {
         xml_read_loop!(reader,
             Event::Empty(ref e) => {
-                if e.name().into_inner() == b"brk" {
+                if e.local_name().into_inner() == b"brk" {
                     let mut obj = Break::default();
                     obj.set_attributes(reader, e);
                     self.add_break_list(obj);
                 }
             },
             Event::End(ref e) => {
-                if e.name().into_inner() == b"rowBreaks" {
+                if e.local_name().into_inner() == b"rowBreaks" {
                     return
                 }
             },

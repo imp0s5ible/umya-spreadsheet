@@ -61,12 +61,12 @@ impl MergeCells {
         xml_read_loop!(
             reader,
             Event::Empty(ref e) => {
-                if e.name().into_inner() == b"mergeCell" {
+                if e.local_name().into_inner() == b"mergeCell" {
                     self.add_range(get_attribute(e, b"ref").unwrap());
                 }
             },
             Event::End(ref e) => {
-                if e.name().into_inner() == b"mergeCells" {
+                if e.local_name().into_inner() == b"mergeCells" {
                     return
                 }
             },

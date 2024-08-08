@@ -244,7 +244,7 @@ impl Borders {
         xml_read_loop!(
             reader,
             Event::Empty(ref e) => {
-                match e.name().into_inner() {
+                match e.local_name().into_inner() {
                     b"left" => {
                         self.left_border.set_attributes(reader, e, true);
                     }
@@ -270,7 +270,7 @@ impl Borders {
                 }
             },
             Event::Start(ref e) => {
-                match e.name().into_inner() {
+                match e.local_name().into_inner() {
                     b"left" => {
                         self.left_border.set_attributes(reader, e, false);
                     }
@@ -296,7 +296,7 @@ impl Borders {
                 }
             },
             Event::End(ref e) => {
-                if e.name().into_inner() == b"border" {
+                if e.local_name().into_inner() == b"border" {
                     return
                 }
             },

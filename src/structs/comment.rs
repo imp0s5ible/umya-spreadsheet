@@ -93,12 +93,12 @@ impl Comment {
         xml_read_loop!(
             reader,
             Event::Start(ref e) => {
-                if e.name().into_inner() == b"text" {
+                if e.local_name().into_inner() == b"text" {
                     self.get_text_mut().set_attributes_text(reader, e);
                 }
             },
             Event::End(ref e) => {
-                if e.name().into_inner() == b"comment" {
+                if e.local_name().into_inner() == b"comment" {
                     return
                 }
             },

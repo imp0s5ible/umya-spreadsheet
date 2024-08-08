@@ -202,7 +202,7 @@ impl CellFormat {
         xml_read_loop!(
             reader,
             Event::Empty(ref e) => {
-                match e.name().into_inner(){
+                match e.local_name().into_inner(){
                     b"alignment" =>{
                         let mut obj = Alignment::default();
                         obj.set_attributes(reader, e);
@@ -217,7 +217,7 @@ impl CellFormat {
                 }
             },
             Event::End(ref e) => {
-                if e.name().into_inner() == b"xf" {
+                if e.local_name().into_inner() == b"xf" {
                     return
                 }
             },

@@ -19,7 +19,7 @@ pub(crate) fn read(
     let mut table = Table::default();
     loop {
         match reader.read_event_into(&mut buf) {
-            Ok(Event::Empty(ref e)) => match e.name().into_inner() {
+            Ok(Event::Empty(ref e)) => match e.local_name().into_inner() {
                 b"tableColumn" => {
                     let mut table_column = TableColumn::default();
                     for a in e.attributes().with_checks(false) {
@@ -82,7 +82,7 @@ pub(crate) fn read(
                 }
                 _ => (),
             },
-            Ok(Event::Start(ref e)) => match e.name().into_inner() {
+            Ok(Event::Start(ref e)) => match e.local_name().into_inner() {
                 b"table" => {
                     for a in e.attributes().with_checks(false) {
                         match a {

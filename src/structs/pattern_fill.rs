@@ -109,7 +109,7 @@ impl PatternFill {
         xml_read_loop!(
             reader,
             Event::Empty(ref e) => {
-                match e.name().into_inner() {
+                match e.local_name().into_inner() {
                     b"fgColor" => {
                         let mut obj = Color::default();
                         obj.set_attributes(reader, e, true);
@@ -124,7 +124,7 @@ impl PatternFill {
                 }
             },
             Event::End(ref e) => {
-                if e.name().into_inner() == b"patternFill" {
+                if e.local_name().into_inner() == b"patternFill" {
                     return
                 }
             },

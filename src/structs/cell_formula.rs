@@ -163,7 +163,7 @@ impl CellFormula {
                     self.text.set_value(e.unescape().unwrap().to_string());
                 },
                 Event::End(ref e) => {
-                    if e.name().into_inner() == b"f" {
+                    if e.local_name().into_inner() == b"f" {
                         break;
                     }
                 },

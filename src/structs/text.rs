@@ -37,7 +37,7 @@ impl Text {
                 self.set_value(e.unescape().unwrap());
             },
             Event::End(ref e) => {
-                if e.name().0 == b"t" {
+                if e.local_name().into_inner() == b"t" {
                     return
                 }
             },

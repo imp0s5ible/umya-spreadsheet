@@ -64,7 +64,7 @@ impl Formula {
                 self.set_address_str(e.unescape().unwrap().to_string());
             },
             Event::End(ref e) => {
-                if e.name().into_inner() == b"formula" {
+                if e.local_name().into_inner() == b"formula" {
                     return
                 }
             },

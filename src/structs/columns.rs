@@ -74,7 +74,7 @@ impl Columns {
         xml_read_loop!(
             reader,
             Event::Empty(ref e) => {
-                if e.name().into_inner() == b"col" {
+                if e.local_name().into_inner() == b"col" {
                     let mut obj = Column::default();
                     obj.set_attributes(reader, e, stylesheet);
                     let min = get_attribute(e, b"min").unwrap().parse::<u32>().unwrap();
@@ -86,7 +86,7 @@ impl Columns {
                 }
             },
             Event::End(ref e) => {
-                if e.name().into_inner() == b"cols" {
+                if e.local_name().into_inner() == b"cols" {
                     return
                 }
             },

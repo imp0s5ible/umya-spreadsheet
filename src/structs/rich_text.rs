@@ -65,14 +65,14 @@ impl RichText {
         xml_read_loop!(
             reader,
             Event::Start(ref e) => {
-                if e.name().into_inner() == b"r" {
+                if e.local_name().into_inner() == b"r" {
                     let mut obj = TextElement::default();
                     obj.set_attributes(reader, e);
                     self.add_rich_text_elements(obj);
                 }
             },
             Event::End(ref e) => {
-                if e.name().into_inner() == b"text" {
+                if e.local_name().into_inner() == b"text" {
                     return
                 }
             },

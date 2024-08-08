@@ -42,7 +42,7 @@ impl OddFooter {
                 self.set_value(e.unescape().unwrap());
             },
             Event::End(ref e) => {
-                if e.name().0 == b"oddFooter" {
+                if e.local_name().into_inner() == b"oddFooter" {
                     return
                 }
             },

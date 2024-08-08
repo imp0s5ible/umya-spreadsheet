@@ -130,21 +130,21 @@ impl Row {
         xml_read_loop!(
             reader,
             Event::Empty(ref e) => {
-                if e.name().into_inner() == b"c" {
+                if e.local_name().into_inner() == b"c" {
                     let mut obj = Cell::default();
                     obj.set_attributes(reader, e, shared_string_table, stylesheet, true, formula_shared_list);
                     cells.set_fast(obj);
                 }
             },
             Event::Start(ref e) => {
-                if e.name().into_inner() == b"c" {
+                if e.local_name().into_inner() == b"c" {
                     let mut obj = Cell::default();
                     obj.set_attributes(reader, e, shared_string_table, stylesheet, false, formula_shared_list);
                     cells.set_fast(obj);
                 }
             },
             Event::End(ref e) => {
-                if e.name().into_inner() == b"row" {
+                if e.local_name().into_inner() == b"row" {
                     return
                 }
             },

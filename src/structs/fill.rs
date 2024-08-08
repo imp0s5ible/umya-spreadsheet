@@ -101,14 +101,14 @@ impl Fill {
         xml_read_loop!(
             reader,
             Event::Empty(ref e) => {
-                if e.name().into_inner() == b"patternFill" {
+                if e.local_name().into_inner() == b"patternFill" {
                     let mut obj = PatternFill::default();
                     obj.set_attributes(reader, e, true);
                     self.set_pattern_fill(obj);
                 }
             },
             Event::Start(ref e) => {
-                match e.name().into_inner() {
+                match e.local_name().into_inner() {
                     b"patternFill" => {
                         let mut obj = PatternFill::default();
                         obj.set_attributes(reader, e, false);
@@ -123,7 +123,7 @@ impl Fill {
                 }
             },
             Event::End(ref e) => {
-                if e.name().into_inner() == b"fill" {
+                if e.local_name().into_inner() == b"fill" {
                     return
                 }
             },

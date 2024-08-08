@@ -32,7 +32,7 @@ pub(crate) fn read(
     let mut formula_shared_list: HashMap<u32, (String, Vec<FormulaToken>)> = HashMap::new();
     xml_read_loop!(
         reader,
-        Event::Start(ref e) => match e.name().into_inner() {
+        Event::Start(ref e) => match e.local_name().into_inner() {
             b"sheetPr" => {
                 for a in e.attributes().with_checks(false) {
                     match a {
@@ -132,7 +132,7 @@ pub(crate) fn read(
             }
             _ => (),
         },
-        Event::Empty(ref e) => match e.name().into_inner() {
+        Event::Empty(ref e) => match e.local_name().into_inner() {
             b"sheetPr" => {
                 for a in e.attributes().with_checks(false) {
                     match a {
@@ -232,7 +232,7 @@ pub(crate) fn read_lite(
     xml_read_loop!(
         reader,
         Event::Start(ref e) => {
-            if e.name().into_inner() == b"row" {
+            if e.local_name().into_inner() == b"row" {
                 let mut obj = Row::default();
                 obj.set_attributes(
                     &mut reader,
@@ -246,7 +246,7 @@ pub(crate) fn read_lite(
             }
         },
         Event::Empty(ref e) => {
-            if e.name().into_inner() == b"row" {
+            if e.local_name().into_inner() == b"row" {
                 let mut obj = Row::default();
                 obj.set_attributes(
                     &mut reader,

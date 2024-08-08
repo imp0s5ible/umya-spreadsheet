@@ -51,7 +51,7 @@ impl ColorScale {
         xml_read_loop!(
             reader,
             Event::Empty(ref e) => {
-                match e.name().into_inner() {
+                match e.local_name().into_inner() {
                     b"cfvo" => {
                         let mut obj = ConditionalFormatValueObject::default();
                         obj.set_attributes(reader, e, true);
@@ -66,7 +66,7 @@ impl ColorScale {
                 }
             },
             Event::Start(ref e) => {
-                match e.name().into_inner() {
+                match e.local_name().into_inner() {
                     b"cfvo" => {
                         let mut obj = ConditionalFormatValueObject::default();
                         obj.set_attributes(reader, e, false);
@@ -81,7 +81,7 @@ impl ColorScale {
                 }
             },
             Event::End(ref e) => {
-                if e.name().into_inner() == b"colorScale" {
+                if e.local_name().into_inner() == b"colorScale" {
                     return
                 }
             },

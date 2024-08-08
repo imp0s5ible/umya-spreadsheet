@@ -79,14 +79,14 @@ impl NumberingFormats {
         xml_read_loop!(
             reader,
             Event::Empty(ref e) => {
-                if e.name().into_inner() == b"numFmt" {
+                if e.local_name().into_inner() == b"numFmt" {
                     let mut obj = NumberingFormat::default();
                     obj.set_attributes(reader, e);
                     self.set_numbering_format(obj);
                 }
             },
             Event::End(ref e) => {
-                if e.name().into_inner() == b"numFmts" {
+                if e.local_name().into_inner() == b"numFmts" {
                     return
                 }
             },
